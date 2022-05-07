@@ -1,13 +1,7 @@
-import { FunctionKeys, KeysExtendType } from 'hotypes'
 import { Nullable } from '@blackglory/prelude'
-import { SerializableError, CustomError } from '@blackglory/errors'
+import { SerializableError } from '@blackglory/errors'
 
-export type ImplementationOf<Obj> = {
-  [Key in FunctionKeys<Obj> | KeysExtendType<Obj, object>]:
-    Obj[Key] extends (...args: infer Args) => infer Result
-      ? (...args: Args) => PromiseLike<Awaited<Result>> | Awaited<Result>
-      : ImplementationOf<Obj[Key]>
-}
+export const version = '2.2'
 
 /**
  * The reason why it is divided into two fields
@@ -79,17 +73,6 @@ export interface IBatchResponse<DataType> extends IDelightRPC {
   >
 }
 
-export type ParameterValidators<Obj> = Partial<{
-  [Key in FunctionKeys<Obj> | KeysExtendType<Obj, object>]:
-    Obj[Key] extends (...args: infer Args) => unknown
-      ? (...args: Args) => void
-      : ParameterValidators<Obj[Key]>
-}>
-
-export class MethodNotAvailable extends CustomError {}
-export class VersionMismatch extends CustomError {}
-export class InternalError extends CustomError {}
-
 export interface IRequestForBatchRequest<Result, DataType> {
   method: string[]
   params: DataType[]
@@ -101,14 +84,4 @@ export interface IResultForBatchResponse<T> {
 
 export interface IErrorForBatchResponse {
   error: SerializableError 
-}
-
-export interface IClientAdapter<T> {
-  send(request: IRequest<T> | IBatchRequest<T>): Promise<void>
-  listen(listener: (response: IResponse<T> | IBatchResponse<T>) => void): () => void
-}
-
-export interface IServerAdapter<T> {
-  send(response: IResponse<T> | IBatchResponse<T>): Promise<void>
-  listen(listener: (request: IRequest<T> | IBatchRequest<T>) => void): () => void
 }

@@ -3232,11 +3232,6 @@ hosted-git-info@^3.0.6:
   dependencies:
     lru-cache "^6.0.0"
 
-hotypes@^0.4.4:
-  version "0.4.4"
-  resolved "https://registry.yarnpkg.com/hotypes/-/hotypes-0.4.4.tgz#c2ae92d83635c71bb3e457168a0f73fbc8e0b10f"
-  integrity sha512-18VR7kCqJQ8zv486BPpIlaWb5h+DKMG4NHrcqEKRQWArrb3mdIfvb7nyL6L4AyAy/P/rwb1FQ8e3L/qz61A/sA==
-
 html-encoding-sniffer@^2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/html-encoding-sniffer/-/html-encoding-sniffer-2.0.1.tgz#42a6dc4fd33f00281176e8b23759ca4e4fa185f3"
