@@ -1,0 +1,52 @@
+{
+  "name": "@delight-rpc/protocol",
+  "version": "2.2.0",
+  "description": "",
+  "files": [
+    "lib",
+    "dist"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "repository": "git@github.com:delight-rpc/protocol.git",
+  "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
+  "license": "MIT",
+  "scripts": {
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet src",
+    "test:coverage": "jest --coverage --runInBand --config jest.config.js",
+    "prepublishOnly": "run-s clean build",
+    "clean": "rimraf lib",
+    "build": "run-s build:*",
+    "build:compile": "tsc --project tsconfig.build.json --module commonjs",
+    "build:patch": "tscpaths -p tsconfig.build.json -s ./src -o ./lib",
+    "release": "standard-version"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "run-s clean lint build",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^16.2.4",
+    "@commitlint/config-conventional": "^16.2.4",
+    "@types/jest": "^27.5.0",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "@typescript-eslint/parser": "^5.22.0",
+    "eslint": "^8.14.0",
+    "husky": "4",
+    "jest": "^27.5.1",
+    "npm-run-all": "^4.1.5",
+    "rimraf": "^3.0.2",
+    "standard-version": "^9.3.2",
+    "ts-jest": "^27.1.4",
+    "tscpaths": "^0.0.9",
+    "tslib": "^2.4.0",
+    "typescript": "^4.6.4"
+  },
+  "dependencies": {
+    "@blackglory/errors": "^2.2.1",
+    "@blackglory/prelude": "^0.1.1",
+    "hotypes": "^0.4.4"
+  }
+}

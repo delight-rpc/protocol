@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2018"
+  , "module": "CommonJS"
+  , "strict": true
+  , "resolveJsonModule": true
+  , "esModuleInterop": true
+  , "noUnusedLocals": true
+  , "noUnusedParameters": false
+  , "baseUrl": "."
+  , "paths": {
+      "@src/*": ["src/*"]
+    , "@utils/*": ["src/utils/*"]
+    , "@test/*": ["__tests__/*"]
+    , "@root/*": ["*"]
+    }
+  }
+}
