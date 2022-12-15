@@ -1,7 +1,7 @@
 import { Nullable } from '@blackglory/prelude'
 import { SerializableError } from '@blackglory/errors'
 
-export const version = '2.2'
+export const version = '3.0'
 
 /**
  * The reason why it is divided into two fields
@@ -12,7 +12,7 @@ export const version = '2.2'
  */
 export interface IDelightRPC {
   protocol: 'delight-rpc'
-  version: `2.${number}`
+  version: `3.${number}`
 
   /**
    * An identifier used to offload multiple different RPC instances
@@ -27,9 +27,9 @@ export interface IRequest<T> extends IDelightRPC {
   id: string
 
   /**
-   * The expected server version, based on semver.
+   * The expected server semver.
    */
-  expectedVersion?: Nullable<`${number}.${number}.${number}`>
+  expectedVersion?: Nullable<string>
   
   /**
    * The `method` field can include the namespace it belongs to.
@@ -56,9 +56,9 @@ export interface IBatchRequest<T> extends IDelightRPC {
   id: string
 
   /**
-   * The expected server version, based on semver.
+   * The expected server semver.
    */
-  expectedVersion?: Nullable<`${number}.${number}.${number}`>
+  expectedVersion?: Nullable<string>
 
   parallel: boolean
 
@@ -83,5 +83,5 @@ export interface IResultForBatchResponse<T> {
 }
 
 export interface IErrorForBatchResponse {
-  error: SerializableError 
+  error: SerializableError
 }

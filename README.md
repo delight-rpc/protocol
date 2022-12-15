@@ -17,7 +17,7 @@ yarn add @delight-rpc/protocol
  */
 interface IDelightRPC {
   protocol: 'delight-rpc'
-  version: `2.${number}`
+  version: `3.${number}`
 
   /**
    * An identifier used to offload multiple different RPC instances
@@ -32,9 +32,9 @@ interface IRequest<T> extends IDelightRPC {
   id: string
 
   /**
-   * The expected server version, based on semver.
+   * The expected server semver.
    */
-  expectedVersion?: Nullable<`${number}.${number}.${number}`>
+  expectedVersion?: Nullable<string>
   
   /**
    * The `method` field can include the namespace it belongs to.
@@ -61,9 +61,9 @@ interface IBatchRequest<T> extends IDelightRPC {
   id: string
 
   /**
-   * The expected server version, based on semver.
+   * The expected server semver.
    */
-  expectedVersion?: Nullable<`${number}.${number}.${number}`>
+  expectedVersion?: Nullable<string>
 
   parallel: boolean
 
