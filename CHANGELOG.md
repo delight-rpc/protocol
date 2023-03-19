@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.0.0](https://github.com/delight-rpc/protocol/compare/v3.0.1...v4.0.0) (2023-03-19)
+
+
+### ⚠ BREAKING CHANGES
+
+* - CommonJS => ESM.
+- The minimal version of Node.js is 16.
+
+* upgrade dependencies ([1186439](https://github.com/delight-rpc/protocol/commit/118643929d8e2521a6b9212bbae581a9a3ec36c9))
+
 ### [3.0.1](https://github.com/delight-rpc/protocol/compare/v3.0.0...v3.0.1) (2023-01-21)
 
 ## [3.0.0](https://github.com/delight-rpc/protocol/compare/v2.2.1...v3.0.0) (2022-12-15)
