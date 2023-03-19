@@ -1,5 +1,5 @@
-import { Nullable } from '@blackglory/prelude'
-import { SerializableError } from '@blackglory/errors'
+import type { Nullable } from '@blackglory/prelude'
+import type { SerializableError } from '@blackglory/errors'
 
 export const version = '3.0'
 

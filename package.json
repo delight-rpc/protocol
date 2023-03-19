@@ -3,50 +3,49 @@
   "version": "3.0.1",
   "description": "",
   "files": [
-    "lib",
-    "dist"
+    "lib"
   ],
+  "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "engines": {
+    "node": ">=16"
+  },
+  "sideEffects": false,
   "repository": "git@github.com:delight-rpc/protocol.git",
   "author": "BlackGlory <woshenmedoubuzhidao@blackglory.me>",
   "license": "MIT",
-  "sideEffects": false,
   "scripts": {
+    "prepare": "ts-patch install -s",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet src",
-    "test:coverage": "jest --coverage --runInBand --config jest.config.js",
-    "prepublishOnly": "run-s clean build",
+    "prepublishOnly": "run-s prepare clean build",
     "clean": "rimraf lib",
-    "build": "run-s build:*",
-    "build:compile": "tsc --project tsconfig.build.json --module commonjs",
-    "build:patch": "tscpaths -p tsconfig.build.json -s ./src -o ./lib",
+    "build": "tsc --project tsconfig.build.json",
     "release": "standard-version"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "run-s clean lint build",
+      "pre-commit": "run-s prepare clean lint build",
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
     }
   },
   "devDependencies": {
-    "@commitlint/cli": "^17.4.2",
-    "@commitlint/config-conventional": "^17.4.2",
-    "@types/jest": "^29.2.6",
-    "@typescript-eslint/eslint-plugin": "^5.48.2",
-    "@typescript-eslint/parser": "^5.48.2",
-    "eslint": "^8.32.0",
+    "@commitlint/cli": "^17.4.4",
+    "@commitlint/config-conventional": "^17.4.4",
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/parser": "^5.55.0",
+    "eslint": "^8.36.0",
     "husky": "4",
-    "jest": "^29.3.1",
     "npm-run-all": "^4.1.5",
-    "rimraf": "^4.1.1",
+    "rimraf": "^4.4.0",
     "standard-version": "^9.5.0",
-    "ts-jest": "^29.0.5",
-    "tscpaths": "^0.0.9",
-    "tslib": "^2.4.1",
-    "typescript": "^4.6.4"
+    "ts-patch": "^2.1.0",
+    "tslib": "^2.5.0",
+    "typescript": "4.8",
+    "typescript-transform-paths": "^3.4.6"
   },
   "dependencies": {
-    "@blackglory/errors": "^2.4.3",
-    "@blackglory/prelude": "^0.2.2"
+    "@blackglory/errors": "^3.0.0",
+    "@blackglory/prelude": "^0.3.1"
   }
 }
