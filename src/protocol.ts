@@ -1,7 +1,7 @@
 import type { Nullable } from '@blackglory/prelude'
 import type { SerializableError } from '@blackglory/errors'
 
-export const version = '3.0'
+export const version = '3.1'
 
 /**
  * The reason why it is divided into two fields
@@ -23,6 +23,8 @@ export interface IDelightRPC {
   [key: string]: unknown
 }
 
+// =================== Client -> Server ===================
+
 export interface IRequest<T> extends IDelightRPC {
   id: string
 
@@ -40,16 +42,13 @@ export interface IRequest<T> extends IDelightRPC {
   params: T[]
 }
 
-export type IResponse<T> = IResult<T> | IError
-
-export interface IResult<T> extends IDelightRPC {
+/**
+ * The new type of message sent by clients to servers since 3.1.
+ * Servers with protocol versions lower than 3.1 will simply ignore these messages.
+ */
+export interface IAbort extends IDelightRPC {
   id: string
-  result: T
-}
-
-export interface IError extends IDelightRPC {
-  id: string
-  error: SerializableError
+  abort: true
 }
 
 export interface IBatchRequest<T> extends IDelightRPC {
@@ -65,17 +64,31 @@ export interface IBatchRequest<T> extends IDelightRPC {
   requests: Array<IRequestForBatchRequest<unknown, T>>
 }
 
+export interface IRequestForBatchRequest<Result, DataType> {
+  method: string[]
+  params: DataType[]
+}
+
+// =================== Server -> Client ===================
+
+export type IResponse<T> = IResult<T> | IError
+
+export interface IResult<T> extends IDelightRPC {
+  id: string
+  result: T
+}
+
+export interface IError extends IDelightRPC {
+  id: string
+  error: SerializableError
+}
+
 export interface IBatchResponse<DataType> extends IDelightRPC {
   id: string
   responses: Array<
   | IResultForBatchResponse<DataType>
   | IErrorForBatchResponse
   >
-}
-
-export interface IRequestForBatchRequest<Result, DataType> {
-  method: string[]
-  params: DataType[]
 }
 
 export interface IResultForBatchResponse<T> {

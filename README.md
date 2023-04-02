@@ -8,6 +8,8 @@ yarn add @delight-rpc/protocol
 
 ## Protocol
 ```ts
+const version = '3.1'
+
 /**
  * The reason why it is divided into two fields
  * is to make it easier to distinguish
@@ -28,6 +30,8 @@ interface IDelightRPC {
   [key: string]: unknown
 }
 
+// =================== Client -> Server ===================
+
 interface IRequest<T> extends IDelightRPC {
   id: string
 
@@ -45,16 +49,13 @@ interface IRequest<T> extends IDelightRPC {
   params: T[]
 }
 
-type IResponse<T> = IResult<T> | IError
-
-interface IResult<T> extends IDelightRPC {
+/**
+ * The new type of message sent by clients to servers since 3.1.
+ * Servers with protocol versions lower than 3.1 will simply ignore these messages.
+ */
+interface IAbort extends IDelightRPC {
   id: string
-  result: T
-}
-
-interface IError extends IDelightRPC {
-  id: string
-  error: SerializableError
+  abort: true
 }
 
 interface IBatchRequest<T> extends IDelightRPC {
@@ -70,6 +71,25 @@ interface IBatchRequest<T> extends IDelightRPC {
   requests: Array<IRequestForBatchRequest<unknown, T>>
 }
 
+interface IRequestForBatchRequest<Result, DataType> {
+  method: string[]
+  params: DataType[]
+}
+
+// =================== Server -> Client ===================
+
+type IResponse<T> = IResult<T> | IError
+
+interface IResult<T> extends IDelightRPC {
+  id: string
+  result: T
+}
+
+interface IError extends IDelightRPC {
+  id: string
+  error: SerializableError
+}
+
 interface IBatchResponse<DataType> extends IDelightRPC {
   id: string
   responses: Array<
@@ -78,16 +98,11 @@ interface IBatchResponse<DataType> extends IDelightRPC {
   >
 }
 
-interface IRequestForBatchRequest<Result, DataType> {
-  method: string[]
-  params: DataType[]
-}
-
 interface IResultForBatchResponse<T> {
   result: T
 }
 
 interface IErrorForBatchResponse {
-  error: SerializableError 
+  error: SerializableError
 }
 ```
