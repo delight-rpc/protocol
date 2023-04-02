@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [4.1.0](https://github.com/delight-rpc/protocol/compare/v4.0.0...v4.1.0) (2023-04-02)
+
+
+### Features
+
+* add new type of message `Abort` ([37d2de9](https://github.com/delight-rpc/protocol/commit/37d2de98fd933ef8c4fa864739d927eb1378f715))
+
 ## [4.0.0](https://github.com/delight-rpc/protocol/compare/v3.0.1...v4.0.0) (2023-03-19)
 
 
