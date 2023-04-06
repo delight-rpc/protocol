@@ -7,6 +7,21 @@ yarn add @delight-rpc/protocol
 ```
 
 ## Protocol
+The Delight RPC protocol is an RPC protocol that can be built on any communication protocol and data exchange format.
+
+The communication of the Delight RPC protocol consists of two parties, the client and the server.
+The client sends a message to the server and the server returns or does not return a message to the client.
+
+As the implementer of the protocol,
+all you need is to make the messages satisfy the following correspondence.
+
+| Client       | Server                |
+|--------------|-----------------------|
+| Request      | Result / Error        |
+| BatchRequest | BatchResponse / Error |
+| Abort        | None                  |
+
+## API
 ```ts
 const version = '3.1'
 
