@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [4.1.1](https://github.com/delight-rpc/protocol/compare/v4.1.0...v4.1.1) (2023-06-11)
+
+
+### Bug Fixes
+
+* export src ([0aa5e0f](https://github.com/delight-rpc/protocol/commit/0aa5e0f9ca059ab147ff1309c39551e9e68448e3))
+
 ## [4.1.0](https://github.com/delight-rpc/protocol/compare/v4.0.0...v4.1.0) (2023-04-02)
 
 
